@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import {UsersPage} from "../users/users";
+import {NavController} from "ionic-angular";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  usersPage = UsersPage;
 
-  constructor(public navCtrl: NavController) {
-
-  }
+  constructor(private navCtrl: NavController) {}
 
   onGoToUsers() {
-    this.navCtrl.push(UsersPage);
+    this.navCtrl.push(this.usersPage)
+      .catch((error) => console.log('Access denied', 'Argument was ' + error));
   }
 }
+
