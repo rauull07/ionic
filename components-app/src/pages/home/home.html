@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h5>Gestures</h5>
+  <app-touch-event></app-touch-event>
+
+  <h5>Grid</h5>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3>A column</ion-col>
+      <ion-col>A second column</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset-3>A new column</ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <h5>Buttons</h5>
+  <button
+    ion-button
+    color="secondary"
+    (click)="onClick()">A normal Button</button>
+
+  <button
+    ion-button
+    outline
+    (click)="onClick()">Outline Button</button>
+
+  <button
+    ion-button
+    clear
+    (click)="onClick()">Clear Button</button>
+
+  <button
+    ion-button
+    round
+    (click)="onClick()">Round Button</button>
+
+  <button
+    ion-button
+    block
+    (click)="onClick()">Block Button</button>
+
+  <button
+    ion-button
+    full
+    (click)="onClick()">Full Button</button>
+
+  <button
+    ion-button
+    full
+    small
+    (click)="onClick()">Small Button</button>
+
+  <button
+    ion-button
+    full
+    large
+    (click)="onClick()">Large Button</button>
+
+  <button
+    ion-button
+    block
+    icon-right
+    (click)="onClick()">
+    Home
+    <ion-icon name="home"></ion-icon>
+  </button>
+
+  <h5>List</h5>
+  <ion-list>
+    <ion-item>
+      <ion-icon name="star" item-left></ion-icon>
+      <h5>The heading of the item</h5>
+      <p>A normal item</p>
+    </ion-item>
+    <button ion-item>A button item</button>
+  </ion-list>
+
+  <h5>Item group</h5>
+  <ion-item-group>
+    <ion-item-divider>A</ion-item-divider>
+    <ion-item>Apples</ion-item>
+    <ion-item>Avocados</ion-item>
+    <ion-item-divider>B</ion-item-divider>
+    <ion-item>Banannas</ion-item>
+    <ion-item>Berries</ion-item>
+  </ion-item-group>
+
+  <h5>List with header</h5>
+  <ion-list>
+    <ion-list-header>Privacy</ion-list-header>
+    <ion-item>Tracking</ion-item>
+    <ion-item>Personal Images</ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>Sharing</ion-list-header>
+    <ion-item>With anyone</ion-item>
+    <ion-item>None</ion-item>
+  </ion-list>
+
+  <h5>Reorderable list</h5>
+  <ion-list reorder="true" (ionItemReorder)="reorderItems($event)">
+    <ion-item *ngFor="let item of items">{{ item }}</ion-item>
+  </ion-list>
+
+</ion-content>
