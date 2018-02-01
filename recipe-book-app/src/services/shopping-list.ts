@@ -1,4 +1,5 @@
 import { Ingredient } from '../models/ingredient';
+
 export class ShoppingListService {
   private ingredients: Ingredient[] = [];
 
