@@ -15,6 +15,7 @@ export class MyApp {
   tabsPage:any = TabsPage;
   signinPage = SigninPage;
   signupPage = SignupPage;
+  isAuthenticated = false;
 
   @ViewChild('nav') nav: NavController;
 
@@ -22,6 +23,16 @@ export class MyApp {
     firebase.initializeApp({
       apiKey: "AIzaSyBhitlMDUj0RPuF0_zW5P2BA1CzmwAkQ_M",
       authDomain: "ionic-recipe-book-9f62a.firebaseapp.com"
+    });
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.isAuthenticated = true;
+        this.nav.setRoot(this.tabsPage);
+      } else {
+        this.isAuthenticated = false;
+        this.nav.setRoot(this.signinPage);
+      }
     });
 
     platform.ready().then(() => {
