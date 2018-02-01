@@ -9,7 +9,7 @@
       <button
         ion-item
         icon-left
-        (click)="onLoad(tabsPage)"
+        (click)="onLoad(rootPage)"
         *ngIf="isAuthenticated">
         <ion-icon name="book"></ion-icon>
         Recipe Book
@@ -42,4 +42,4 @@
   </ion-content>
 </ion-menu>
 
-<ion-nav [root]="tabsPage" #nav></ion-nav>
+<ion-nav [root]="rootPage" #nav></ion-nav>
