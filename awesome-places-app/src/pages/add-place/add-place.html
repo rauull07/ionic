@@ -86,7 +86,7 @@
           </button>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row *ngIf="imageUrl != ''">
         <ion-col>
           <img [src]="imageUrl">
         </ion-col>
@@ -97,8 +97,8 @@
             ion-button
             color="secondary"
             block
-            [disabled]="!f.valid || !locationIsSet"
-            type="submit">
+            type="submit"
+            [disabled]="!f.valid || !locationIsSet || imageUrl == ''">
             Add this Place
           </button>
         </ion-col>
