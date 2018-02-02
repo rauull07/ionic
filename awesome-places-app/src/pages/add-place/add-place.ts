@@ -3,10 +3,13 @@ import { IonicPage, LoadingController, ModalController, ToastController } from '
 import { NgForm } from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
+import { Entry, File, FileError } from '@ionic-native/file';
 
 import { SetLocationPage } from '../set-location/set-location';
 import { Location } from '../../models/location';
 import { PlacesService } from '../../services/places';
+
+declare var cordova: any;
 
 @IonicPage()
 @Component({
@@ -26,7 +29,8 @@ export class AddPlacePage {
               private loadingCtrl: LoadingController,
               private toastCtrl: ToastController,
               private camera: Camera,
-              private placesService: PlacesService) {
+              private placesService: PlacesService,
+              private file: File) {
   }
 
   onSubmit(form: NgForm) {
@@ -87,12 +91,37 @@ export class AddPlacePage {
     })
       .then(
         imageData => {
+          const currentName = imageData.replace(/^.*[\\\/]/, '');
+          const path = imageData.replace(/[^\/]*$/, '');
+          const newFileName = new Date().getUTCMilliseconds() + '.jpg';
+          this.file.moveFile(path, currentName, cordova.file.dataDirectory, newFileName)
+            .then(
+              (data: Entry) => {
+                this.imageUrl = data.nativeURL;
+                this.camera.cleanup();
+              }
+            )
+            .catch(
+              (error: FileError) => {
+                this.imageUrl = '';
+                const toast = this.toastCtrl.create({
+                  message: 'Could not save the image. Please try again',
+                  duration: 2500
+                });
+                toast.present();
+                this.camera.cleanup();
+              }
+            );
           this.imageUrl = imageData;
         }
       )
       .catch(
         error => {
-          console.log(error);
+          const toast = this.toastCtrl.create({
+            message: 'Could not take the image. Please try again',
+            duration: 2500
+          });
+          toast.present();
       });
   }
 }
