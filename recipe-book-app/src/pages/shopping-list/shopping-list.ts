@@ -45,7 +45,7 @@ export class ShoppingListPage {
       data => {
         if (data.action == 'load') {
           loading.present();
-          this.authService.getActiveUser().getToken()
+          this.authService.getActiveUser().getIdToken()
             .then(
               (token: string) => {
                 this.slService.fetchList(token)
@@ -67,7 +67,7 @@ export class ShoppingListPage {
             );
         } else if (data.action == 'store') {
           loading.present();
-          this.authService.getActiveUser().getToken()
+          this.authService.getActiveUser().getIdToken()
             .then(
               (token: string) => {
                 this.slService.storeList(token)
