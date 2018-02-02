@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="awesome.places.app.id" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <allow-navigation href="*" />
-    <content src="index.html" />
+    <content original-src="index.html" src="http://172.18.166.148:8100" />
     <content original-src="index.html" />
     <name>awesome-places-app</name>
     <description>An awesome Ionic/Cordova app.</description>
@@ -87,4 +87,7 @@
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
+    <plugin name="cordova-plugin-camera" spec="^4.0.2" />
+    <allow-navigation href="http://172.18.166.148:8100" />
+    <engine name="android" spec="7.0.0" />
 </widget>
