@@ -35,4 +35,15 @@ export class ShoppingListService {
         return response.json();
       });
   }
+
+  fetchList(token: string) {
+    const userId = this.authService.getActiveUser().uid;
+    return this.http.get('https://ionic-recipe-book-9f62a.firebaseio.com/' + userId + '/shopping-list.json?auth=' + token)
+      .map((response: Response) => {
+        return response.json();
+      })
+      .do((data) => {
+        this.ingredients = data;
+      });
+  }
 }
